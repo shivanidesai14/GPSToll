@@ -4,6 +4,7 @@ import { UserserviceService } from "../../providers/userDB/userservice.service";
 import { MenuController, ToastController } from '@ionic/angular';
 import { user } from "../../shared/user_class";
 import { Router } from '@angular/router';
+import { async } from 'q';
 
 
 @Component({
@@ -47,7 +48,7 @@ export class VerificationUserPage implements OnInit {
       
     });
     console.log(this.user_input);
-    this.Users.user_verify(this.user_input, this.mail).subscribe(
+  await this.Users.user_verify(this.user_input, this.mail).subscribe(
       (data: { result:any }) => {
           console.log(data.result + "data result");
         if (data.result == "true" ) {

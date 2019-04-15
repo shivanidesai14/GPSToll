@@ -12,12 +12,10 @@ export class UserserviceService {
   private urllogin: string = "http://tollproject.herokuapp.com/userlogin/";
   private url: string = "http://tollproject.herokuapp.com/userss/";
   private url_mail = "http://tollproject.herokuapp.com/mail/";
-  private url_password_update =
-    "http://tollproject.herokuapp.com/userpassword/";
+  private url_password_update ="http://tollproject.herokuapp.com/userpassword/";
   private url_verify = "http://tollproject.herokuapp.com/verifyuser/";
   private url_resend = "http://tollproject.herokuapp.com/resendotp/";
-  private urltranactionuser =
-    "http://tollproject.herokuapp.com/transactionuser/";
+  private urltranactionuser = "http://tollproject.herokuapp.com/transactionuser/";
 
   private user: user[] = [];
 
@@ -46,6 +44,7 @@ export class UserserviceService {
     });
   }
   changePassword(newpass: string, id: any) {
+    console.log(newpass,id);
     return this.http.put(this.url + newpass + "/" + id, {
       headers: new HttpHeaders().set("Content-type", "application/json")
     });
@@ -76,6 +75,7 @@ export class UserserviceService {
     });
   }
   user_verify(otp: any, email: any) {
+    console.log(otp,email);
     return this.http.get(this.url_verify + otp + "/" + email);
   }
   emailsend(user: any) {

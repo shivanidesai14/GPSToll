@@ -22,10 +22,16 @@ export class ChangepasswordPage implements OnInit {
   confpass: string;
   constructor(public data: UserserviceService, public md5: Md5, public router: Router) {
     this.myform = new FormGroup({
-      oldpass: new FormControl('', [Validators.required, Validators.pattern("^([A-Za-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$")]),
-      newpass: new FormControl('', [Validators.required, Validators.pattern("^([A-Za-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$")]),
-      confpass: new FormControl('', [Validators.required, Validators.pattern("^([A-Za-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$")],
-      )
+      oldpass: new FormControl('',{
+        validators:[Validators.required, Validators.pattern("^([A-Za-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$")],updateOn:'blur'
+      }),
+      newpass: new FormControl('', {
+        validators:[Validators.required, Validators.pattern("^([A-Za-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$")],updateOn:'blur'
+      }),
+      confpass: new FormControl('', {
+        validators:[Validators.required, Validators.pattern("^([A-Za-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$")]
+        ,updateOn:'blur'
+      }   )
     });
   }
 
