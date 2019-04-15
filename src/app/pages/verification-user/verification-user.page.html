@@ -1,20 +1,23 @@
 <ion-header>
-  <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button></ion-back-button>
-        </ion-buttons>  
-    <ion-title>verification_user</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="login/signup"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Verification User</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-
-
 <ion-content padding>
-  <div *ngIf="flag">Your Email is not Verified.<br>Check Your Email to verify</div>
-<ion-item>
-  <ion-input type="text" placeholder="Enter OTP Here" [(ngModel)]="user_input"></ion-input>
-  <ion-button (click)="verify_user()">Submit</ion-button><br>
-  
-</ion-item>
-<a style="text-decoration: none" (click)="resend()">resend OTP</a>
+    <!-- <div align="center"></div> -->
+    <ion-item *ngIf="flag">
+        <h3>Your Email is not Verified.Check Your Email to verify!</h3>
+    </ion-item>
+    <form [formGroup]="verify_form">
+        <ion-item>
+            <ion-input formControlName="otp" type="text" placeholder="Enter OTP Here" required [(ngModel)]="user_input"></ion-input>
+            <ion-button (click)="verify_user()" [disabled]="!verify_form.valid">Submit</ion-button><br>
+        </ion-item>
+    </form>
+    <br>
+    <a style="text-decoration: none; float: right;" (click)="resend()">Resend OTP</a>
 </ion-content>

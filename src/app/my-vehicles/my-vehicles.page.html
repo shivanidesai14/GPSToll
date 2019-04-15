@@ -15,7 +15,10 @@
     </ion-fab>
     <ion-searchbar showCancelButton placeholder="Search Vehicle" (ionInput)="getItems($event)">
     </ion-searchbar>
-    <ion-list>
+    <ion-item [hidden]="!showList">
+        <ion-label>Please add a new Vehicle!</ion-label>
+    </ion-item>
+    <ion-list [hidden]="showList">
         <ion-list-header>
             List of Vehicles
         </ion-list-header>
@@ -42,16 +45,12 @@
                     <!-- <ion-label>{{item.vehicle_type_name}}</ion-label> -->
                 </p>
             </ion-item>
-            <ion-item-options>
-                <!-- <button ion-button color="secondary" icon-start (click)="updateVehicle(item.vehicle_no)">
-                    <ion-icon name="edit" color="secondary"></ion-icon>
-                    Save
-                </button> -->
+            <!-- <ion-item-options>
                 <button ion-button color="danger" icon-start (click)="deleteVehicle(item.vehicle_no)">
                     <ion-icon color="danger" name="trash"></ion-icon>
                     Delete
                 </button>
-            </ion-item-options>
+            </ion-item-options> -->
         </ion-item-sliding>
     </ion-list>
 </ion-content>

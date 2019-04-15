@@ -3,38 +3,26 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="select-toll-plaza"></ion-back-button>
     </ion-buttons>
-    <ion-title>Payment Method</ion-title>
+    <ion-title>Select Payment Method</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
+   <ion-list>
     <ion-radio-group>
-      <ion-list-header>
-        <b
-          ><font size="5"><u> Select Payment Type </u></font></b
-        >
-      </ion-list-header>
-      <ion-item *ngFor="let item of paymeth">
-        <ion-label
-          ><i class="far fa-credit-card"></i> {{ item.method_name }}
+    
+      <ion-item *ngFor="let item of paymeth" lines="none">
+        <ion-label><i class="far fa-credit-card" style="font-size:20px;"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ item.method_name }}
         </ion-label>
-        <ion-radio
-          slot="start"
-          (ionSelect)="getId(item.method_id)"
-          value="{{ item.method_id }}"
-          (ionSelect)="getvalue(item.method_name)"
-          >{{ item.method_name }}</ion-radio
-        >
+        <ion-radio slot="start" (ionSelect)="getId(item.method_id)" value="{{ item.method_id }}"
+          (ionSelect)="getvalue(item.method_name)"><p style="font-size:20px;">{{ item.method_name }}</p></ion-radio>
       </ion-item>
-      <br />
-    </ion-radio-group>
-  </ion-list>
+      <br><br>
+    </ion-radio-group><br>
+  </ion-list> 
 
-  <ion-button
-    [disabled]="!buttonDisabled"
-    style="position:fixed;width:100%;bottom:0;left:0"
-    (click)="getVehicleNo()"
-    >Next</ion-button
-  >
+  
+
+  <ion-button [disabled]="!buttonDisabled" style="position:fixed;width:100%;bottom:0;left:0" (click)="getVehicleNo()">Next
+  </ion-button>
 </ion-content>

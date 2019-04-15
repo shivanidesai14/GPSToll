@@ -49,7 +49,7 @@ export class LocationTrackingService {
       desiredAccuracy: 10,
       stationaryRadius: 20,
       distanceFilter: 30,
-      debug: true, //  enable this hear sounds for background-geolocation life-cycle.
+      debug: false, //  enable this hear sounds for background-geolocation life-cycle.
       stopOnTerminate: false, // enable this to clear background location settings when the app terminates
       notificationTitle:"GPS Based Toll Collection System",
       url:"http://localhost:3000/"
@@ -63,13 +63,13 @@ export class LocationTrackingService {
 
         this.backgroundGeolocation.on(BackgroundGeolocationEvents.location).subscribe((location: BackgroundGeolocationResponse) => {
           console.log(location);
-          this.sendToServer(location.latitude,location.longitude).subscribe((data)=>{
-            console.log("sending to server successful");
-          },()=>{
-            console.log("error in http request");
-          },()=>{
-            console.log("request completed");
-          });
+          // this.sendToServer(location.latitude,location.longitude).subscribe((data)=>{
+          //   console.log("sending to server successful");
+          // },()=>{
+          //   console.log("error in http request");
+          // },()=>{
+          //   console.log("request completed");
+          // });
           // this.backgroundGeolocation.forceSync();
 
           // this.sendNotification(location.latitude+" <- latitude longitude->"+location.longitude);

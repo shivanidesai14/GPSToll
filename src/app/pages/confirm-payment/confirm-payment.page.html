@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content padding>
-    <table style="padding: 2%">
+    <table style="padding: 2%;border:0;">
         <tr>
             <td>
                 <ion-label style="float:left;text-decoration:bold">
@@ -22,7 +22,7 @@
     </table>
 
   <br /><br />
-  <table style="border: 1px solid black; float:left; ">
+   <table>
     <tr>
       <td>
         <ion-label>
@@ -33,7 +33,7 @@
     <tr>
       <td>
         <ion-label>
-          <b> Jounrey Type :- {{ whichj }}</b>
+          <b> Journey Type :- {{ whichj }}</b>
         </ion-label>
         <br />
         <ion-label *ngFor="let item of vehicletype" style="float:left">
@@ -42,8 +42,8 @@
       </td>
     </tr>
   </table>
-  <table border="2px">
-    <tr><th>Sr.No </th><th>Highway Name</th><th>City Name</th><th>Emergency No</th><th>Amount</th><th>Toll Name</th></tr>
+  <table id="a">
+    <tr><th>Sr.No </th><th>Highway Name</th><th>City Name</th><th>Emergency No</th><th>Toll Name</th><th>Amount</th></tr>
     <tr *ngFor="let item of final_arr_transaction">
       <td>
         {{ item.SrNo }}
@@ -57,16 +57,17 @@
       <td>
         {{ item.emergency_no }}
       </td>
-      <td>
-        {{ item.amount }}
-      </td>
+     
       <td>
         {{ item.toll_name }}
       </td>
+      <td>
+        {{ item.amount }}
+      </td>
     </tr>
     <tr>
-      <td>
-        <ion-label style="float:right">
+      <td colspan="5">
+        <ion-label style="float:left">
           <b> Total Amount :- </b>
         </ion-label>
       </td>
@@ -95,13 +96,7 @@
         </div>
         <div>
           <ion-item>
-            <ion-input
-              type="password"
-              pattern="[0-9]{3}"
-              placeholder="Enter CVV"
-              title="Only three Digit allow"
-              (ionBlur)="inputBoxIfwrite()"
-            >
+            <ion-input type="password" pattern="[0-9]{3}" placeholder="Enter CVV" title="Only three Digit allow">
             </ion-input>
 
            <img src="../../../assets/icon/cvv.jpg" alt="" width=20%>
@@ -110,11 +105,5 @@
       </div>
     </ion-list>
   </table>
-  <ion-button
-    [disabled]="!buttonDisabled"
-    expand="block"
-    style="width:100%;  margin-bottom: -20px"
-    (click)="transaction()"
-    >Confirm</ion-button
-  >
+  <ion-button expand="block"  style="position:fixed;width:100%;bottom:0;left:0" (click)="transaction()">Confirm</ion-button>
 </ion-content>

@@ -17,7 +17,7 @@
     <ion-list>
         <form [formGroup]="add_vehicle_form" (ngSubmit)="done()">
             <ion-item>
-                <ion-input type="text" [(ngModel)]="vehicle_no" formControlName="vehicle_no" placeholder="Enter Vehicle No e.g.GJ-01-XX-1111" clearInput></ion-input>
+                <ion-input type="text" [(ngModel)]="vehicle_no" formControlName="vehicle_no" placeholder="Vehicle No e.g.GJ-01-XX-1111" clearInput></ion-input>
             </ion-item>
             <div class="validation-errors">
                 <ng-container *ngFor="let validation of validation_messages.vehicle_no">

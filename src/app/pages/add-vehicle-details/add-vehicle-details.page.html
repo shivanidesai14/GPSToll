@@ -22,16 +22,16 @@
     </ion-list>
 
     <ion-item>
-        <ion-label position="floating">New Vehicle Number</ion-label>
-        <ion-input [(ngModel)]="tmp_vno" readonly></ion-input>
+        <ion-label position="floating">Add New Vehicle Number</ion-label>
+        <ion-input [(ngModel)]="tmp_vno"  (click)="onAdd1()" readonly ></ion-input>
     </ion-item>
-    <ion-button color="primary" (click)="onAdd1()" style="float:right">Add Vehcile</ion-button>
+    
 
     <br />
     <br /><br /><br /><br /><br />
     <br /><br /><br /><br /><br />
 
-    <ion-button expand="full" [disabled]="vno==''" style="bottom:30px" (click)="getVehicleNo()">Next</ion-button>
+    <ion-button style="position:fixed;width:100%;bottom:0;left:0" (click)="getVehicleNo()" expand="full" [disabled]="vno==''" >Next</ion-button>
 
 
 

@@ -215,8 +215,9 @@ export class ConfirmPaymentPage implements OnInit {
       tos.present();
       this.subject = "Transaction Status";
       this.text =
-        "<b>Transaction Successfull Receipt Of Transaction is below</b>"+
-        "Respected Sir/Madam,"+this.name+"gfh";
+      "<b>Transaction Successfull Receipt Of Transaction is below</b><br/>"
+      "<b>Respected Sir/Madam,</b>"+this.name;
+     "<th>"+"Sr.No"+"</th>"
       this.send
         .sendEmail(new sendMail(this.subject, this.recevier, this.text))
         .subscribe(
@@ -274,8 +275,5 @@ export class ConfirmPaymentPage implements OnInit {
         iters++;
     });
   }
-  inputBoxIfwrite()
-  {
-    this.buttonDisabled = true; 
-  }
+
 }

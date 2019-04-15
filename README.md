@@ -24,8 +24,8 @@ The app
 3. Clone This Repository.
 4. Go To root directory of this repo and type following command to install all dependencies
    
-   `npm install`
-   `npm audit fix`
+   * `npm install`
+   * `npm audit fix`
    
  # How to use?
 

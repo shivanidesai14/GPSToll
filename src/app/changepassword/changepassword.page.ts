@@ -1,4 +1,5 @@
-import { Md5 } from 'ts-md5/dist/md5';
+import { ToastController } from '@ionic/angular';
+import { Md5 } from 'ts-md5';
 import { paymentMethodsUser } from './../shared/user_payment_methods';
 import { UserserviceService } from 'src/app/providers/userDB/userservice.service';
 import { FormControl, Validators, AbstractControl } from '@angular/forms';
@@ -20,7 +21,9 @@ export class ChangepasswordPage implements OnInit {
   hashed: any;
   id: any;
   confpass: string;
-  constructor(public data: UserserviceService, public md5: Md5, public router: Router) {
+  dbPassword: string;
+  
+  constructor(public data: UserserviceService, public router: Router,private toast:ToastController) {
     this.myform = new FormGroup({
       oldpass: new FormControl('',{
         validators:[Validators.required, Validators.pattern("^([A-Za-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{6,}$")],updateOn:'blur'
@@ -38,10 +41,12 @@ export class ChangepasswordPage implements OnInit {
   ngOnInit() {
     this.id = localStorage.getItem('id');
     this.data.getUserById(this.id).subscribe(
-      (u: any) => {
+      (u:user[]) => {
         console.log(u);
-        this.us = u;
-        //this.us = u[0];
+        this.us = u[0];
+        console.log(this.us);
+        this.dbPassword=this.us.user_password;
+        console.log(this.dbPassword);
       },
       (err) => {
         console.log(err);
@@ -50,27 +55,51 @@ export class ChangepasswordPage implements OnInit {
 
       });
   }
-  ChangePassword() {
-    console.log(this.oldpass + " " + this.newpass + " " + this.confpass);
-    this.us.user_password=this.md5.appendStr(this.oldpass).end().toString();
-    console.log(this.md5.appendStr(this.oldpass).end().toString());
+  async ChangePassword() {
+    /*console.log(this.oldpass + " " + this.newpass + " " + this.confpass);
     console.log(this.us);
-    this.data.userlogin(this.us).subscribe(
-      (data: any) => {
-        alert("Authenticated");
-        this.hashed = this.md5.appendStr(this.newpass).end();
-        console.log(this.hashed);
-        this.data.changePassword(this.hashed, localStorage.getItem('id')).subscribe(
+    console.log("Database Password " +this.us.user_password);*/
+    const md5=new Md5();
+    let tmp=md5.appendStr(this.oldpass).end();
+    const tos = await this.toast.create({
+      message: "Invalid Old Password",
+      duration: 5000,
+      position: "bottom",
+      cssClass: "toast_login_fail",
+      translucent: true,
+      animated: true
+    });
+    const tos1 = await this.toast.create({
+      message: "Password Changed",
+      duration: 5000,
+      position: "bottom",
+      cssClass: "toast-login",
+      translucent: true,
+      animated: true,
+      
+    });
+    
+    //console.log(tmp.toString()+" tmp log");
+    if(this.us.user_password===tmp)
+    {
+       
+    
+        const md5=new Md5();
+        let newTmp=md5.appendStr(this.newpass).end();
+        //console.log(newTmp.toString+" newTmp");
+        /* this.hashed = md5.appendStr(this.newpass).end();
+        console.log(this.hashed.toString()+" hashed new"); */
+        this.data.changePassword(newTmp.toString(), localStorage.getItem('id')).subscribe(
           (data: any) => {
-            alert("Password Changed");
+            tos1.present();
             this.router.navigate(['/my-profile']);
           }
         );
-      },
-      function (err) {
-        alert("Error in Verifying Old Password");
       }
-    );
+      else
+      {
+        tos.present();
+      }
 
   }
 

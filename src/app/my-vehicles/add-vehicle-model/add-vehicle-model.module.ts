@@ -1,27 +1,27 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { Routes, RouterModule } from "@angular/router";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { AddVehicleModelPage } from './add-vehicle-model.page';
+import { AddVehicleModelPage } from "./add-vehicle-model.page";
 
-const routes: Routes = [
+/* const routes: Routes = [
   {
     path: '',
     component: AddVehicleModelPage
   }
-];
+]; */
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    ReactiveFormsModule
+    /* RouterModule.forChild(routes) */
   ],
-  declarations: [AddVehicleModelPage]
+  declarations: []
 })
 export class AddVehicleModelPageModule {}

@@ -15,6 +15,8 @@ export class ViewPaymentMethodPage implements OnInit {
   visited: boolean = false;
   paymentMethod: paymentMethodsUser = null;
   uid: any;
+
+  showList: boolean = false;
   constructor(
     private route: ActivatedRoute,
     private user_payment_method_db: PaymentMethodsService,
@@ -35,29 +37,24 @@ export class ViewPaymentMethodPage implements OnInit {
   async ngOnInit() {
     this.uid = localStorage.getItem("id");
 
-    const toast = await this.toastController.create({
-      message: "Swipe to delete Card",
-      showCloseButton: true,
-      position: "bottom",
-      closeButtonText: "Ok"
-    });
-
     this.user_payment_method_db.getAllPaymentByUid(this.uid).subscribe(
       (data: paymentMethodsUser[]) => {
         this.payment_methods = data;
         this.visited = true;
+        if (this.payment_methods.length == 0) {
+          this.showList = true;
+        }
       },
       err => {
         console.log(err);
       },
       () => {
-        toast.present();
       }
     );
   }
 
   ionViewDidEnter() {
-    if (this.visited) this.ngOnInit();
+    /* if (this.visited) this.ngOnInit(); */
   }
 
   async editPayment(item: paymentMethodsUser) {
@@ -69,7 +66,8 @@ export class ViewPaymentMethodPage implements OnInit {
     this.router.navigateByUrl("/edit-payment-details", navigationExtras);
   }
 
-  async onDeleteCard(payment_id) {
+  /* async onDeleteCard(payment_id) {
+    console.log("hell" + payment_id);
     const confirmBox = await this.alertController.create({
       header: "Confirm!",
       message: "Are you sure you want to delete this Card?",
@@ -86,6 +84,7 @@ export class ViewPaymentMethodPage implements OnInit {
               .deletePaymentMethod(payment_id)
               .subscribe(
                 (data: any) => {
+                  console.log(data);
                   this.ngOnInit();
                 },
                 err => {
@@ -98,5 +97,5 @@ export class ViewPaymentMethodPage implements OnInit {
       ]
     });
     confirmBox.present();
-  }
+  } */
 }

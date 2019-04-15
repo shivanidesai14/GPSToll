@@ -9,27 +9,10 @@
 </ion-header>
 
 <ion-content padding>
-    <!-- <ion-card *ngFor="let item of payment_methods">
-        <table>
-            <tr>
-                <td>
-                    <ion-card-content>
-                        <p style="color:black;font-size:15px;">Card Holder Name - {{item.user_name}}</p>
-                        <p style="color:rgb(119, 116, 116);font-size:13px">Card No - {{item.card_no}}</p>
-                        <p style="color:rgb(119, 116, 116);font-size:13px">Card Name - {{item.card_name}}</p>
-                        <p style="color:rgb(119, 116, 116);font-size:13px">Expiry Date -
-                            {{item.expiry_month}}/{{item.expiry_year}}
-                        </p>
-                    </ion-card-content>
-                </td>
-                <td style="background:green;color:white;font-size:25px;">
-                    <ion-icon name="create" (click)="editPayment(item)"></ion-icon>
-                </td>
-
-            </tr>
-        </table>
-    </ion-card> -->
-    <ion-list>
+    <ion-item [hidden]="!showList">
+        <ion-label>Please add a new Vehicle!</ion-label>
+    </ion-item>
+    <ion-list [hidden]="showList">
         <ion-list-header>
             List of Saved Cards
         </ion-list-header>
@@ -49,12 +32,12 @@
                     </tr>
                 </table>
             </ion-item>
-            <ion-item-options>
+            <!-- <ion-item-options>
                 <button ion-button color="danger" icon-start (click)="onDeleteCard(item.payment_id)">
                     <ion-icon color="danger" name="trash"></ion-icon>
                     Delete
                 </button>
-            </ion-item-options>
+            </ion-item-options> -->
         </ion-item-sliding>
     </ion-list>
 </ion-content>

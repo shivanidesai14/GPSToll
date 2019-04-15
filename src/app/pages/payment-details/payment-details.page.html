@@ -8,20 +8,13 @@
 </ion-header>
 
 <ion-content padding>
-  <table>
+  <table style="width:auto;border:0px solid black">
     <ion-list>
-      <ion-radio-group
-        *ngFor="let item of paydetail"
-        [(ngModel)]="payment_type"
-      >
+      <ion-radio-group *ngFor="let item of paydetail" [(ngModel)]="payment_type">
         <tr *ngIf="item.method_id == mid">
           <td>
-            <ion-radio
-              slot="start"
-              (ionSelect)="getId(item.payment_id)"
-              (ionSelect)="onRadioChange(item.payment_id)"
-              value="{{ item.payment_id }}"
-            >
+            <ion-radio slot="start" (ionSelect)="getId(item.payment_id)" (ionSelect)="onRadioChange(item.payment_id)"
+              value="{{ item.payment_id }}">
             </ion-radio>
           </td>
           <td>
@@ -37,8 +30,8 @@
                 <p style="color:rgb(119, 116, 116);font-size:13px" >
                   Valid Upto - {{ item.expiry_month }} / {{ item.expiry_year }}
                 </p>
-                <ion-label style="float : right" >
-                    <i class="far fa-credit-card"></i> {{item.card_name}}
+                <ion-label style="float : right">
+                  <i class="far fa-credit-card"></i> {{item.card_name}}
                 </ion-label>
               </ion-card-content>
             </ion-card>
@@ -51,11 +44,7 @@
   <table>
     <tr>
       <td>
-        <ion-fab-button
-          color="primary"
-          style="position:fixed;bottom:0;right:0px"
-          (click)="addPayDetail()"
-        >
+        <ion-fab-button color="primary" style="position:fixed;bottom:0;right:0px" (click)="addPayDetail()">
           <ion-icon name="add"></ion-icon>
         </ion-fab-button>
       </td>

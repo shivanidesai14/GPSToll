@@ -5,7 +5,9 @@ import {
   MenuController,
   IonRouterOutlet,
   ModalController,
-  ToastController
+  ToastController,
+  NavController,
+  AlertController
 } from "@ionic/angular";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
@@ -18,81 +20,26 @@ import { PermissionsService } from "./providers/background-geo-location/permissi
   templateUrl: "app.component.html"
 })
 export class AppComponent implements OnInit {
-  lastTimeBack = 0;
-  timeOut = 2000;
-
   @ViewChildren(IonRouterOutlet) routerOutlets: QueryList<IonRouterOutlet>;
-
-  public appPages = [
-    {
-      title: "Home",
-      url: "/home",
-      icon: "home"
-    },
-    {
-      title: "My Vehicles",
-      url: "/my-vehicles",
-      icon: "car"
-    },
-    {
-      title: "Past Payments",
-      url: "/past-payments",
-      icon: "pricetags"
-    },
-    {
-      title: "My Saved Cards",
-      url: "/payment-options",
-      icon: "wallet"
-    },
-    {
-      title: "My Profile",
-      url: "/my-profile",
-      icon: "Person"
-    },
-    {
-      title: "Sign Out",
-      url: "/logout",
-      icon: "power"
-    }
-  ];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private router: Router,
-    private menuController: MenuController,
-    private modalCtrl: ModalController,
-    private toast: ToastController,
-    private perm: PermissionsService
+    private perm: PermissionsService,
+    private navCtrl: NavController,
+    private alertCtrl: AlertController
   ) {
     this.initializeApp();
-    // this.backButtonEnable();
+    this.backButtonEnable();
     this.perm.checkGPSPermission();
   }
 
-  ngOnInit() {
-    /* this.router.events.subscribe((event: RouterEvent) => {
-      if (
-        event instanceof NavigationEnd &&
-        (event.url === `/login` || event.url === `/signup`)
-      ) {
-        this.menuController.enable(false);
-      }
-    }); */
-
-    this.router.events.subscribe((event: RouterEvent) => {
-      if (event instanceof NavigationEnd) {
-        this.appPages.map(p => {
-          return (p["active"] = event.url === p.url);
-        });
-      }
-    });
-  }
+  ngOnInit() {}
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // this.statusBar.styleDefault();
       this.statusBar.show();
       this.splashScreen.hide();
     });
@@ -100,48 +47,13 @@ export class AppComponent implements OnInit {
 
   backButtonEnable() {
     this.platform.backButton.subscribe(async () => {
-      // modal
-      try {
-        const element = await this.modalCtrl.getTop();
-        if (element) {
-          element.dismiss();
-          return;
-        }
-      } catch (error) {
-        console.log(error);
-      }
-
-      // sidemenu
-      try {
-        const element = await this.menuController.getOpen();
-        if (element !== null) {
-          this.menuController.close();
-          return;
-        }
-      } catch (error) {
-        console.log(error);
-      }
-
       this.routerOutlets.forEach(async (outlet: IonRouterOutlet) => {
-        if (outlet && outlet.canGoBack()) {
-          outlet.pop();
-        } else if (
+        if (
           this.router.url === "/home" ||
           this.router.url === "/login" ||
-          this.router.url === "" ||
-          this.router.url === "my-vehicles"
+          this.router.url === ""
         ) {
-          if (new Date().getTime() - this.lastTimeBack < this.timeOut) {
-            navigator["app"].exitApp();
-          } else {
-            const tstCtrl = await this.toast.create({
-              message: "Press back again to exit App",
-              position: "bottom",
-              duration: 2000
-            });
-            tstCtrl.present();
-            this.lastTimeBack = new Date().getTime();
-          }
+          this.presentConfirm();
         }
       });
     });
@@ -149,6 +61,30 @@ export class AppComponent implements OnInit {
 
   onLogout() {
     localStorage.clear();
-    this.router.navigate(["/login"]);
+    this.navCtrl.navigateRoot(["/login"]);
+  }
+
+  async presentConfirm() {
+    const alert = await this.alertCtrl.create({
+      header: "Confirm Exit",
+      message: "Do you want Exit?",
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          handler: () => {
+            console.log("Cancel clicked");
+          }
+        },
+        {
+          text: "Yes",
+          handler: () => {
+            console.log("Yes clicked");
+            navigator["app"].exitApp();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }

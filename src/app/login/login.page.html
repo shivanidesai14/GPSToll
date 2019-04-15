@@ -1,44 +1,51 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title text-wrap>Login</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title text-wrap>Login</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <!-- <ion-text color="primary" class="ion-text-center">
+    <!-- <ion-text color="primary" class="ion-text-center">
     <h2>GPS Based Toll Collection System</h2>
   </ion-text> -->
-  <form [formGroup]="loginform">
-  <br><br>
+    <img src="../../assets/logoEToll.png" style="align-items:center;
+    height: 150px;
+    width: 150px;
+    margin-bottom: -15%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;">
+    <form [formGroup]="loginform">
+        <br><br>
 
-  <ion-item>
-    <ion-label position="floating">Email ID</ion-label>
-    <ion-input formControlName="email" type="text"  id="email" [(ngModel)]="email"></ion-input>
-  </ion-item>
-  <br>
-    <div *ngIf="!loginform.controls.email.valid &&
-                 loginform.controls.email.dirty" style="color:red;"> 
-      Please Enter a Valid Email.
-    </div>
-  <ion-item>
-    <ion-label position="floating">Password</ion-label>
-    <ion-input formControlName="password1" type="password"  id="password1" [(ngModel)]="password1"></ion-input>
-  </ion-item>
-  <br>
-    <div *ngIf="!loginform.controls.password1.valid &&
+        <ion-item>
+            <ion-label position="floating">Email ID</ion-label>
+            <ion-input formControlName="email" type="text" id="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <br>
+        <div *ngIf="!loginform.controls.email.valid &&
+        loginform.controls.email.dirty" style="color:red;">
+            Please Enter a Valid Email.
+        </div>
+        <ion-item>
+            <ion-label position="floating">Password</ion-label>
+            <ion-input formControlName="password1" type="password" id="password1" [(ngModel)]="password1"></ion-input>
+        </ion-item>
+        <br>
+        <div *ngIf="!loginform.controls.password1.valid &&
                loginform.controls.password1.dirty" style="color:red;">
-      Please Enter a Valid Password
-      <br>Minmum 6 Charactor
+            Please Enter a Valid Password
+            <br>Minmum 6 Charactor
 
-    </div>
-  <br>
-  <a style="float:right;font-size:12px;" (click)="forgetpassword()">Forget Password??</a>
-  <br>
-  <ion-button [disabled]="!loginform.valid"   (click)="onlogin()"  expand="full">
-    Login
-    <ion-icon slot="end" name="log-in"></ion-icon>
-  </ion-button>
-  <a style="float:right;font-size:15px;" [routerLink]="['/login/signup']" routerLinkActive="router-link-active" >Don't have an account??</a>
-  <br>
-</form>
+        </div>
+        <br>
+        <a style="float:right;font-size:12px;" (click)="forgetpassword()">Forget Password??</a>
+        <br>
+        <ion-button [disabled]="!loginform.valid" (click)="onlogin()" expand="full">
+            Login
+            <ion-icon slot="end" name="log-in"></ion-icon>
+        </ion-button>
+        <a style="float:right;font-size:15px;" [routerLink]="['/login/signup']" routerLinkActive="router-link-active">Don't have an account??</a>
+        <br>
+    </form>
 </ion-content>

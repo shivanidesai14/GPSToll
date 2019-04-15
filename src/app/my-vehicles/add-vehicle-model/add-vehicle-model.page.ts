@@ -37,7 +37,7 @@ export class AddVehicleModelPage implements OnInit {
   ) {
     this._vehicletype.getAllVehicleType().subscribe(
       (data: any) => {
-        
+
         this.vehicle_type = data;
         this.add_vehicle_form = new FormGroup({
           vehicle_no: new FormControl(

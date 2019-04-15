@@ -2,13 +2,22 @@
 
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button></ion-back-button>
+            <ion-back-button defaultHref="login"></ion-back-button>
         </ion-buttons>
         <ion-title>Signup</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+    <img src="../../assets/logoEToll.png" style="align-items: center;
+    height: 150px;
+    width: 150px;
+    margin-left: 20%;
+    margin-bottom: -20%;
+    margin-top: 5%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;">
     <form [formGroup]="myform">
         <br><br><br>
         <ion-list>
@@ -44,7 +53,7 @@
             <br>
             <div *ngIf="!myform.controls.password1.valid &&
       myform.controls.password1.dirty" style="color:red;">
-                
+
                 -> Minmum 6 Charactor
                 <br>->One Special Charactor
                 <br>->One Digit

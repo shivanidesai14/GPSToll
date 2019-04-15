@@ -1,6 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { IonicSelectableComponent } from "ionic-selectable";
-
 import { TollplazaService } from "../../providers/tollplazadb/tollplaza.service";
 
 import { Tollplazza } from "../../shared/tollplaza_class";

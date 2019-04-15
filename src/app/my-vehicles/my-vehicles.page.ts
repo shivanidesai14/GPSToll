@@ -24,6 +24,8 @@ export class MyVehiclesPage implements OnInit {
   vehicle_type: vehicleType[] = [];
   searchVehicle: FormControl;
   uid: any;
+
+  showList: boolean = false;
   constructor(
     private menuController: MenuController,
     private alertController: AlertController,
@@ -47,6 +49,9 @@ export class MyVehiclesPage implements OnInit {
       (data: vehicle[]) => {
         this.vehicles = data;
         this.vehiclesDup = data;
+        if (vehicle.length == 0) {
+          this.showList = true;
+        }
       },
       err => {
         console.log(err);
@@ -87,27 +92,14 @@ export class MyVehiclesPage implements OnInit {
 
   getItems(ev) {
     this.vehicles = this.vehiclesDup;
-    let val = ev.target.value;
-    if (val && val.trim() != "") {
+    const val = ev.target.value;
+    if (val && val.trim() !== "") {
       this.vehicles = this.vehicles.filter(
         x =>
           x.vehicle_no.toLocaleLowerCase().indexOf(val.toLocaleLowerCase()) > -1
       );
     }
   }
-
-  filteredVehicles() {}
-
-  onVehicleSearch(event) {
-    /* const searchVehicle = event.target.toLowerCase();
-    requestAnimationFrame(()=>{
-      this.vehicles.forEach(v=>{
-        const 
-      })
-    }); */
-  }
-
-  async updateVehicle(vehicle_no) {}
 
   async deleteVehicle(vehicle_no: number) {
     const confirmBox = await this.alertController.create({

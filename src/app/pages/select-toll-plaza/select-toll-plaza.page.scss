@@ -4,52 +4,63 @@ input[type=radio] {
     font-size: 10px;
     width: auto;
 }
-
-ion-card {
-    display: flex;
-    flex-direction: column;
-    width: 100% !important;
-    //  margin: 0 15px 0 5px;
+html, body
+{
+    height: 100%;
 }
+// ion-card {
+//     display: flex;
+//     flex-direction: column;
+//     width: 100% !important;
+//     //  margin: 0 15px 0 5px;
+// }
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
-    display: block;
+// article,
+// aside,
+// details,
+// figcaption,
+// figure,
+// footer,
+// header,
+// hgroup,
+// menu,
+// nav,
+// section {
+//     display: block;
+// }
+
+// .header-banner {
+//     height: 20px;
+//     min-height: 20px;
+//     background: white;
+// }
+
+// .slide-zoom {
+//     // height:200px;
+//     height: 20%;
+//     // overflow:hidden;
+// }
+
+// ion-slides {
+//     height: 20px;
+// }
+
+// .fix {
+//     overflow: hidden;
+//     top: 10px;
+//     margin-left: 0px;
+//     position: fixed;
+// }
+
+// .b {
+//     padding: 16px;
+//     margin-top: 30px;
+// }
+tr,td
+{
+    border: 1px;
 }
-
-.header-banner {
-    height: 20px;
-    min-height: 20px;
-    background: white;
-}
-
-.slide-zoom {
-    // height:200px;
-    height: 20%;
-    // overflow:hidden;
-}
-
-ion-slides {
-    height: 20px;
-}
-
-.fix {
-    overflow: hidden;
-    top: 10px;
-    margin-left: 0px;
-    position: fixed;
-}
-
-.b {
-    padding: 16px;
-    margin-top: 30px;
+td
+{
+    width:100%;
 }

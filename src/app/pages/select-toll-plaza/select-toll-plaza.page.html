@@ -3,26 +3,30 @@
         <ion-buttons slot="start">
             <ion-back-button defaultHref="home"></ion-back-button>
         </ion-buttons>
-        <ion-title>Select Toll Plaza</ion-title>
+        <ion-title>Select Vehicle Type</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
  
     <form [formGroup]="select_toll_plaza" (ngSubmit)="onVehicle()">
-        <ion-item>
+        <ion-item style="font-size:15px;font-weight: bold">
             <ion-label>Total Amount to be paid: </ion-label>
             <!-- [(ngModel)]="totalAmount" -->
             <ion-input formControlName="amt" [(ngModel)]="totalAmount" readonly></ion-input>
         </ion-item>
         <!-- [(ngModel)]="whichJ" -->
+        <ion-item>
+            <ion-label position="floating">Select Journey Type</ion-label>
+        </ion-item>
+        <br />
         <ion-radio-group formControlName="journey" [(ngModel)]="whichJ" (ionChange)="myAmountChange()" (ionSelect)="journeyselect()">
-            <ion-item>
+            <ion-item lines="none">
                 <ion-label>Single Journey</ion-label>
                 <ion-radio slot="start" value="single"></ion-radio>
             </ion-item>
 
-            <ion-item>
+            <ion-item lines="none">
                 <ion-label>Return journey</ion-label>
                 <ion-radio slot="start" value="return"></ion-radio>
             </ion-item>
@@ -31,58 +35,77 @@
             <ion-label position="floating">Select Vehicle Type</ion-label>
         </ion-item>
         <br />
-        <table>
-            <!-- //[(ngModel)]="vehicle" -->
+        <br />
+        <table style="margin-right:8%;">
+           
             <ion-radio-group formControlName="vehicle_type" [(ngModel)]="vehicle" name="vehicle_type" id="vehicle_type" (ionChange)="anotherMyAmountChange()" (ionSelect)="onSelectVehicle()" (ionSelect)="OnInit()">
                 <tr>
                     <td>
-                        <ion-item>
-                            <i class="fas fa-motorcycle" style="font-size: 24px;"></i>
+                            <ion-item lines="none">
+                            <i class="fas fa-motorcycle" style="font-size: 30px;"></i>
                             <ion-radio slot="start" value="two_wheeler" checked></ion-radio>
-                        </ion-item>
+                       </ion-item>
                     </td>
                     <td>
-                        <ion-item>
-                            <i class="fas fa-car" style="font-size: 24px;"></i>
+                        <ion-item lines="none">
+                            <i class="fas fa-car" style="font-size: 30px;"></i>
                             <ion-radio slot="start" value="four_wheeler"></ion-radio>
                         </ion-item>
                     </td>
-                </tr>
+                </tr><br><br>
+
                 <tr>
-                    <td>
-                        <ion-item>
-                            <ion-icon name="bus" size="large" style="font-size:24px;color:black"></ion-icon>
+                    <td >
+                        <ion-item lines="none">
+                            <ion-icon name="bus" size="large" style="font-size:30px;color:black"></ion-icon>
                             <ion-radio slot="start" value="bus"></ion-radio>
                         </ion-item>
                     </td>
 
    
                     <td>
-                        <ion-item>
-                            <i class="fas fa-truck" size="large" style="font-size:24px;"></i>
+                        <ion-item lines="none">
+                            <i class="fas fa-truck" size="large" style="font-size:30px;"></i>
 
                             <ion-radio slot="start" value="truck"></ion-radio>
                         </ion-item>
                     </td>
-                </tr>
+                </tr><br><br>
                 <tr>
                     <td>
-                        <ion-item>
-                            <i class="fas fa-truck-monster" style="font-size:24px;"></i>
+                        <ion-item lines="none">
+                            <i class="fas fa-truck-monster" style="font-size:30px;"></i>
                             <ion-radio slot="start" value="monster"></ion-radio>
                         </ion-item>
                     </td>
-
+                     <!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  -->
                     <td>
-                        <ion-item>
-                            <i class="fas fa-truck-moving" style="font-size:24px;"></i>
+                        <ion-item lines="none">
+                            <i class="fas fa-truck-moving" style="font-size:30px;"></i>
                             <ion-radio slot="start" value="six_wheeler"></ion-radio>
                         </ion-item>
                     </td>
                 </tr>
+
+                <tr style=" visibility: hidden;">
+                        <td style="float: left;">
+                            <ion-item>
+                                <i class="fas fa-truck-monster" style="font-size:30px;"></i>
+                                <ion-radio slot="start" value="monster"></ion-radio>
+                            </ion-item>
+                        </td>
+                         <!-- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  -->
+                        <td style="float:right;" >
+                            <ion-item>
+                                <i class="fas fa-truck-moving" style="font-size:30px;"></i>
+                                <ion-radio slot="start" value="six_wheeler"></ion-radio>
+                            </ion-item>
+                        </td>
+                    </tr>
+                
             </ion-radio-group>
         </table>
     </form>
-    <ion-button expand="block" [disabled]="!select_toll_plaza.valid" (click)="onVehicle()">Next
+    <ion-button style="position:fixed;width:100%;bottom:0;left:0" expand="block" [disabled]="!select_toll_plaza.valid" (click)="onVehicle()">Next
     </ion-button>
 </ion-content>

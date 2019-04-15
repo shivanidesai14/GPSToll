@@ -159,7 +159,6 @@ export class AddVehicleDetailsPage implements OnInit {
       animated: true
     });
     this.uid = localStorage.getItem("id");
-    alert(this.uid);
     this.vdata
       .addVehicle(new VehicleClass(this.vno, this.vehicle_type, this.uid))
       .subscribe(
